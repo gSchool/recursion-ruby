@@ -17,13 +17,12 @@ class Tree
     name_array
   end
 
-  def names_with_indentation(node)
-    multiplier = 0
-    indented_node = node.name + ("  " * multiplier)
-    name_array = [indented_node]
+  def names_with_indentation(node, multiplier = 0)
+    name_array = ["#{("  " * multiplier)}#{node.name}"]
+
     node.children.each do |child|
-      multiplier += 1
-      name_array += names_with_indentation(child)
+      name_array += names_with_indentation(child, multiplier + 1)
     end
+    name_array
   end
 end
